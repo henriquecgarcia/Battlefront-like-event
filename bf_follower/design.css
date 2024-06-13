@@ -1,0 +1,172 @@
+* {
+	font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+body {
+	color: #fff;
+	background-image: url('./bg_honeycomb.jpg');
+	background-repeat: repeat;
+	transform: translateY(-10px);
+}
+*::-webkit-scrollbar {
+	width: 10px;
+	border-radius: 5px;
+	background: rgba(0, 0, 0, 0.25);
+}
+*::-webkit-scrollbar-thumb {
+	background: rgba(0, 0, 0, 0.5);
+	border-radius: 5px;
+}
+
+.cis {
+	color: red;
+}
+.republic {
+	color: rgb(100, 100, 255);
+}
+.col-alpha {
+	color: #f00;
+}
+.col-beta {
+	color: #00f;
+}
+.col-charlie {
+	color: #0f0;
+}
+.col-delta {
+	color: #ff0;
+}
+
+.content {
+	margin: 0 auto;
+	width: 90%;
+}
+
+.header {
+	position: relative;
+	top: 0;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	text-align: center;
+	text-transform: uppercase;
+	z-index: 100;
+}
+.header .capture {
+	display: grid;
+	/* making grid 100x1 */
+	grid-template-columns: repeat(100, 1fr);
+	justify-content: center;
+	position: relative;
+	width: 100%;
+	transition: ease-in-out 1s;
+}
+.header .capture .gar_percent, .header .capture .cis_percent {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-style: solid;
+	border-width: 5px;
+	border-radius: 5px;
+}
+.header .capture .gar_percent {
+	border-color: #22f;
+}
+.header .capture .cis_percent {
+	border-color: #f22;
+}
+.header .capture_info {
+	display: grid;
+	/* making grid 2x1 */
+	grid-template-columns: 1fr 1fr;
+	/* centering the grid */
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	align-items: center;
+}
+.header .capture_info .gar_info, .header .capture_info .cis_info {
+	display: inline-block;
+	margin: 10px;
+	padding: 10px;
+	background: rgba(0, 0, 0, 0.5);
+	border-radius: 5px;
+}
+
+.capture_points {
+	display: grid;
+	/* making gid 2x2 */
+	grid-template-columns: 1fr 1fr;
+	/* centering the grid */
+	justify-content: center;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	align-items: center;
+	text-align: center;
+	overflow: hidden;
+	max-width: 70%;
+}
+.capture_points .capture_point {
+	display: inline-block;
+	margin: 10px;
+	padding: 10px;
+	background: rgba(0, 0, 0, 0.5);
+	border-radius: 5px;
+	transition: ease-in-out 1s;
+	max-height: 600px;
+	width: auto;
+}
+.capture_points .capture_point:hover {
+	cursor: pointer;
+}
+.capture_points .capture_point img {
+	max-height: 500px;
+	width: auto;
+	transition: ease-in-out 1s;
+}
+.capture_points .capture_point span.capture-text {
+	text-transform: uppercase;
+}
+
+.logs {
+	margin-top: 100px;
+	margin-bottom: 100px;
+	display: grid;
+	/* making grid 2x1 */
+	grid-template-columns: 1fr 1fr;
+	/* centering the grid */
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	align-items: center;
+	border: 3px solid #fff;
+	border-radius: 5px;
+	background-color: rgba(0, 0, 0, 0.75);
+}
+.logs .script-log, .logs .advert-log {
+	margin: 10px;
+	padding: 10px;
+	padding-top: 0;
+	border: 1px solid #000;
+	border-radius: 5px;
+	min-height: 200px;
+	background-color: #222;
+	h3 {
+		text-transform: uppercase;
+	}
+}
+.logs .script-log #spambox {
+	font-family: Arial, Helvetica, sans-serif;
+	max-height: 600px;
+	min-height: 200px;
+	overflow-y: scroll;
+	background-color: #fff;
+	color: #000;
+}
+.logs .advert-log #advertbox {
+	font-family: Arial, Helvetica, sans-serif;
+	max-height: 600px;
+	min-height: 200px;
+	overflow-y: scroll;
+	background-color: #fff;
+	color: #000;
+}

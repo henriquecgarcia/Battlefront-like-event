@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Battlefront Capture points follower</title>
+	<link rel="stylesheet" href="./bf_follower/design.css">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script src="./bf_follower/capture_script.js"></script>
+</head>
+<body>
+	<div class="header">
+		<h1>Battlefront Capture points follower</h1>
+		<div class="capture">
+			<div class="gar_percent" style="grid-column: span 50;"></div>
+			<div class="cis_percent" style="grid-column: span 50;"></div>
+		</div>
+		<div class="capture_info">
+			<div class="gar_info">
+				<h3>Galactic Republic</h3>
+				<p>Points: <span id="gar_points">2</span></p>
+				<p>Percentage: <span id="gar_percent">0</span>%</p>
+			</div>
+			<div class="cis_info">
+				<h3>Confederacy of Independent Systems</h3>
+				<p>Points: <span id="cis_points">2</span></p>
+				<p>Percentage: <span id="cis_percent">0</span>%</p>
+			</div>
+		</div>
+	</div>
+	<div class="content">
+		<div class="capture_points">
+			<div class="capture_point" id="Alpha">
+				<h2 class="col-alpha">Alpha</h2>
+				<img src="./bf_follower/cis_emblem.png" alt=""><br/><span class="capture-text cis">CIS</span>
+			</div>
+			<div class="capture_point" id="Beta">
+				<h2 class="col-beta">Beta</h2>
+				<img src="./bf_follower/cis_emblem.png" alt=""><br/><span class="capture-text cis">CIS</span>
+			</div>
+			<div class="capture_point" id="Charlie">
+				<h2 class="col-charlie">Charlie</h2>
+				<img src="./bf_follower/Republic_Emblem.svg" alt=""><br/><span class="capture-text republic">Republic</span>
+			</div>
+			<div class="capture_point" id="Delta">
+				<h2 class="col-delta">Delta</h2>
+				<img src="./bf_follower/Republic_Emblem.svg" alt=""><br/><span class="capture-text republic">Republic</span>
+			</div>
+		</div>
+		<div class="logs">
+			<div class="script-log">
+				<h3>Script log</h3>
+				<div id="spambox"></div>
+			</div>
+			<div class="advert-log">
+				<h3>Advert log</h3>
+				<div id="advertbox"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
