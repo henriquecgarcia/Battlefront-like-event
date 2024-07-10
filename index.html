@@ -7,6 +7,9 @@
 	<link rel="stylesheet" href="./bf_follower/design.css">
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 	<script src="./bf_follower/capture_script.js"></script>
+
+	<link rel="stylesheet" href="./bf_follower/collapse_menu/colapsable_menu.css">
+	<script src="./bf_follower/collapse_menu/collapse_menu.js"></script>
 </head>
 <body>
 	<div class="header">
@@ -25,6 +28,23 @@
 				<h3>Confederacy of Independent Systems</h3>
 				<p>Points: <span id="cis_points">2</span></p>
 				<p>Percentage: <span id="cis_percent">0</span>%</p>
+			</div>
+		</div>
+	</div>
+	<div class="collapse">
+		<div class="collapse-toogle">
+			&#9776; Show/hide
+		</div>
+		<div class="collapse-content">
+			<div class="side-to-side">
+				<div class="left">
+					<div id="gar-events"></div>
+					<div class="gar_add_event center"><input type="text" name="add_gar" id="add_gar"/> <button id="add_gar_event">Add Event</button></div>
+				</div>
+				<div class="right">
+					<div id="cis-events"></div>
+					<div class="cis_add_event center"><input type="text" name="add_cis" id="add_cis"/> <button id="add_cis_event">Add Event</button></div>
+				</div>
 			</div>
 		</div>
 	</div>

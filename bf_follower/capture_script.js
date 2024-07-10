@@ -3,7 +3,9 @@ const min_percent = 0;
 let gar_percent = 0;
 let cis_percent = 0;
 
-const cis_events = [
+var cis_events = [];
+var gar_events = [];
+const default_events_cis = [
 	"General Grievous has joined the battle.",
 	"Count Dooku has joined the battle.",
 	"An AAT has been spotted near the battlefield.",
@@ -13,7 +15,7 @@ const cis_events = [
 	"A droidika has joined the battle.",
 	"A droidika has been spotted near the battlefield."
 ];
-const gar_events = [
+const default_events_gar = [
 	"An AT-TE has been deployed to the battlefield.",
 	"An AT-RT has been deployed to the battlefield.",
 	"A Jedi has joined the battle.",
@@ -33,11 +35,69 @@ function addAdvert(message) {
 	$("#advertbox").prepend("/advert " + message+"<br>");
 }
 
+
+function addEvent(allegiance, event) {
+	addLog("Added event: " + event + " to " + allegiance);
+	if (allegiance == "cis") {
+		cis_events.push(event);
+		var newEvent = "<div class='event'><p>" + event + "</p> <button class='remove_event' onclick='removeEvent(\"cis\", \"" + event + "\")'>Remove</button></div>";
+		$("#cis-events").append(newEvent);
+		
+		current_cis = cis_events;
+	} else if (allegiance == "gar") {
+		gar_events.push(event);
+
+		var newEvent = "<div class='event'><p>" + event + "</p> <button class='remove_event' onclick='removeEvent(\"gar\", \"" + event + "\")'>Remove</button></div>";
+		$("#gar-events").append(newEvent);
+
+		current_gar = gar_events;
+	}
+}
+
+function removeEvent(allegiance, event) {
+	if (allegiance == "cis") {
+		cis_events.splice(cis_events.indexOf(event), 1);
+		let succ = false;
+		$("#cis-events").children().each(function() {
+			if ($(this).find("p").text() == event) {
+				succ = true;
+				$(this).remove();
+			}
+		});
+		if (!succ) {
+			addLog("Failed to remove event: " + event + " from " + allegiance);
+			return;
+		}
+		current_cis = cis_events;
+	} else if (allegiance == "gar") {
+		let succ = false;
+		gar_events.splice(gar_events.indexOf(event), 1);
+		$("#gar-events").children().each(function() {
+			if ($(this).find("p").text() == event) {
+				succ = true;
+				$(this).remove();
+			}
+		});
+		if (!succ) {
+			addLog("Failed to remove event: " + event + " from " + allegiance);
+			return;
+		}
+		current_gar = gar_events;
+	}
+	addLog("Removed event: " + event + " from " + allegiance);
+}
+
+let event_announced = false;
 function event_cis() {
 	if (current_cis.length == 0) {
 		current_cis = cis_events;
 	}
+	if (event_announced) {
+		return;
+	}
 	let event = current_cis[Math.floor(Math.random() * current_cis.length)];
+	current_cis.splice(current_cis.indexOf(event), 1);
+	event_announced = true;
 	addLog(event);
 	addAdvert(event);
 }
@@ -45,7 +105,12 @@ function event_gar() {
 	if (current_gar.length == 0) {
 		current_gar = gar_events;
 	}
+	if (event_announced) {
+		return;
+	}
 	let event = current_gar[Math.floor(Math.random() * current_gar.length)];
+	current_gar.splice(current_gar.indexOf(event), 1);
+	event_announced = true;
 	addLog(event);
 	addAdvert(event);
 }
@@ -82,7 +147,6 @@ function percent_think() {
 		return;
 	}
 	let balance = conq_balance();
-	console.log("Balance: " + balance);
 	if (balance == 0) {
 		setTimeout(update_percent, 1000);
 		return;
@@ -115,12 +179,18 @@ function percent_think() {
 	if (balance > 0) {
 		addLog("CIS is winning, moving " + balance + " points ahead");
 		if (cis_percent % 5 == 0) {
-			event_cis();
+			if (!event_announced)
+				event_cis();
+		} else {
+			event_announced = false;
 		}
 	} else {
 		addLog("GAR is winning, moving " + balance + " points ahead");
 		if (gar_percent % 5 == 0) {
-			event_gar();
+			if (!event_announced)
+				event_gar();
+		} else {
+			event_announced = false;
 		}
 	}
 
@@ -134,7 +204,6 @@ function percent_think() {
 }
 
 function update_percent() {
-	console.log("Updating percent");
 	percent_think();
 }
 
@@ -159,5 +228,24 @@ $().ready(function() {
 			addLog("Changed allegiance of " + $(this).attr("id") + " to CIS");
 			addAdvert("CIS has captured " + $(this).attr("id"));
 		}
+	});
+	$("#add_gar_event").click(function() {
+		let event = $("#add_gar").val();
+		if (event != "") {
+			addEvent("gar", event);
+		}
+	});
+	$("#add_cis_event").click(function() {
+		let event = $("#add_cis").val();
+		if (event != "") {
+			addEvent("cis", event);
+		}
+	});
+
+	default_events_cis.forEach(function(event) {
+		addEvent("cis", event);
+	});
+	default_events_gar.forEach(function(event) {
+		addEvent("gar", event);
 	});
 });
