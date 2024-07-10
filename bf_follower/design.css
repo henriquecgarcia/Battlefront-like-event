@@ -172,12 +172,13 @@ body {
 }
 
 .side-to-side {
-	display: inline-block;
+	display: block;
 	margin: 0 auto;
+	width: 90%;
 
 	.right {
 		display: inline-block;
-		width: 48dvw;
+		width: 48%;
 		text-align: right;
 		border: solid 1px #fff;
 		border-radius: 5px;
@@ -188,7 +189,7 @@ body {
 
 	.left {
 		display: inline-block;
-		width: 48dvw;
+		width: 48%;
 		text-align: left;
 		border: solid 1px #fff;
 		border-radius: 5px;
